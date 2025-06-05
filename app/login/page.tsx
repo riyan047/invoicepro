@@ -1,18 +1,18 @@
 import { Button } from "@/components/ui/button";
 import {
     Card,
-    // CardAction,
     CardContent,
     CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { signIn } from "@/app/utils/auth";
+import { useState } from "react";
 
 export default function Login() {
+
     return (
         <>
             <div className="flex h-screen w-full justify-center items-center px-4">
@@ -23,15 +23,20 @@ export default function Login() {
                     </CardHeader>
                     <CardContent>
                         <form
-                            action={async () => {
+                            action={async (formData) => {
                                 "use server"
-                                await signIn()
+                                await signIn("nodemailer", formData)
                             }}
                             className="flex flex-col gap-y-4"
                         >
                             <div className="flex flex-col gap-y-2">
                                 <Label>Email</Label>
-                                <Input placeholder="Your email" />
+                                <Input
+                                    name="email"
+                                    type="email"
+                                    required
+                                    placeholder="hello@hello.com"
+                                />
                             </div>
                             <Button>Submit</Button>
                         </form>
