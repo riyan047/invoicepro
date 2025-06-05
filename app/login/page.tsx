@@ -8,11 +8,16 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { signIn } from "@/app/utils/auth";
-import { useState } from "react";
+import { auth, signIn } from "@/app/utils/auth";
+import SubmitButton from "../components/submitButtons";
+import { redirect } from "next/navigation";
 
-export default function Login() {
-
+export default async function Login() {
+    const session = await auth();
+    //IF SESSION EXISTS REDIRECT TO DASHBOARD
+    if (session?.user) {
+        redirect("/dashboard");
+    }
     return (
         <>
             <div className="flex h-screen w-full justify-center items-center px-4">
@@ -38,11 +43,10 @@ export default function Login() {
                                     placeholder="hello@hello.com"
                                 />
                             </div>
-                            <Button>Submit</Button>
+                            <SubmitButton />
                         </form>
                     </CardContent>
                 </Card>
-
             </div>
         </>
     );
