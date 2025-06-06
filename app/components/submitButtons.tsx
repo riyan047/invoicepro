@@ -12,7 +12,7 @@ const SubmitButton = () => {
                     disabled
                     className="w-full"
                 >
-                    <Loader2 className=" size-4 mr-2
+                    <Loader2 className=" size-4
                     animate-spin" />Please wait...
                 </Button>)
                     :

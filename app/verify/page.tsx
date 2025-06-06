@@ -22,7 +22,7 @@ export default function Verify() {
                     <div className="mt-4 rounded-md bg-yellow-50 border border-yellow-300 p-4">
                         <div className="flex items-center">
                             <AlertCircle className="size-5 text-yellow-400" />
-                            <p className="text-sm font-medium text-yellow-700 ml-3">Be sure to check your spam folder!</p>
+                            <p className="text-sm font-medium text-yellow-700 ml-1">Be sure to check your spam folder!</p>
                         </div>
                     </div>
                 </CardContent>
