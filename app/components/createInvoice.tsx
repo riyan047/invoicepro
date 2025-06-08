@@ -1,10 +1,17 @@
+"use client"
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { CalendarIcon } from "lucide-react";
+import { useState } from "react";
 
 export function CreateInvoice() {
+    const [selectedDate, setSelectedDate] = useState(new Date())
     return (
         <Card className="max-w-4xl w-full mx-auto">
             <CardContent className="p-6">
@@ -42,20 +49,62 @@ export function CreateInvoice() {
                     <div>
                         <Label>From</Label>
                         <div className="space-y-2">
-                            <Input placeholder="Your Name"/>
-                            <Input placeholder="Your Email"/>
-                            <Input placeholder="Your Address"/>
+                            <Input placeholder="Your Name" />
+                            <Input placeholder="Your Email" />
+                            <Input placeholder="Your Address" />
                         </div>
                     </div>
                     <div>
                         <Label>To</Label>
                         <div className="space-y-2">
-                            <Input placeholder="Client Name"/>
-                            <Input placeholder="Client Email"/>
-                            <Input placeholder="Client Address"/>
+                            <Input placeholder="Client Name" />
+                            <Input placeholder="Client Email" />
+                            <Input placeholder="Client Address" />
                         </div>
                     </div>
 
+                </div>
+                <div className="grid md:grid-cols-2 gap-6 ">
+                    <div>
+                        <div>
+                            <Label>Date</Label>
+                        </div>
+                        <Popover>
+                            <PopoverTrigger asChild>
+                                <Button variant="outline" className="w-full text-left justify-start">
+                                    <CalendarIcon />
+                                    {selectedDate ? (
+                                        new Intl.DateTimeFormat("en-US", {
+                                            dateStyle: "long"
+                                        }).format(selectedDate)
+                                    ) : (
+                                        <span>Pick a date</span>
+                                    )}
+                                </Button>
+                            </PopoverTrigger>
+                            <PopoverContent>
+                                <Calendar
+                                    selected={selectedDate}
+                                    onSelect={(date) => setSelectedDate(date || new Date())}
+                                    mode="single"
+
+                                />
+                            </PopoverContent>
+                        </Popover>
+                    </div>
+                    <div>
+                        <Label>Invoice Due</Label>
+                        <Select>
+                            <SelectTrigger>
+                                <SelectValue placeholder="Select due date" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="0">Due on Reciept</SelectItem>
+                                <SelectItem value="15">Net 15</SelectItem>
+                                <SelectItem value="30">Net 30</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
                 </div>
             </CardContent>
         </Card>
