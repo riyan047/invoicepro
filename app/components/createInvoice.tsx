@@ -114,7 +114,6 @@ export function CreateInvoice() {
                         <p className="col-span-2">Quantity</p>
                         <p className="col-span-2">Rate</p>
                         <p className="col-span-2">Amount</p>
-                        {/* <Label></Label> */}
                     </div>
                     <div className="grid grid-cols-12 gap-4 mb-4">
                         <div className="col-span-6">
