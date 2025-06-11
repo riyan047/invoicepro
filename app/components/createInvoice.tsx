@@ -15,6 +15,8 @@ import { createInvoice } from "../actions";
 import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
 import { invoiceSchema } from "../utils/zodSchemas";
+import { formatCurrency } from "../utils/formatCurrency";
+
 
 export function CreateInvoice() {
     const [lastResult, action] = useActionState(createInvoice, undefined);
@@ -28,7 +30,14 @@ export function CreateInvoice() {
         shouldRevalidate: "onInput"
     })
 
-    const [selectedDate, setSelectedDate] = useState(new Date())
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [rate, setRate] = useState("");
+    const [quantity, setQuantity] = useState("");
+    const [currency, setCurrency] = useState("USD")
+
+    const calculateTotal = (Number(quantity) || 0) * (Number(rate) || 0);
+
+
     return (
         <Card className="max-w-4xl w-full mx-auto">
             <CardContent className="p-6">
@@ -41,6 +50,10 @@ export function CreateInvoice() {
                     <input type="hidden" name={fields.date.name}
                         value={selectedDate.toISOString()}
                     //this hidden input is for calender where we cant use defaults
+                    />
+
+                    <input type="hidden" name={fields.total.name}
+                        value={calculateTotal}
                     />
                     <div className="flex flex-col gap-1 w-fit mb-6">
                         <div className="flex items-center gap-4">
@@ -74,7 +87,9 @@ export function CreateInvoice() {
                             <Select
                                 name={fields.currency.name}
                                 key={fields.currency.name}
-                                defaultValue="USD">
+                                defaultValue="USD"
+                                onValueChange={(value) => setCurrency(value)}
+                            >
                                 <SelectTrigger>
                                     <SelectValue placeholder="Select Currency" />
                                 </SelectTrigger>
@@ -187,15 +202,18 @@ export function CreateInvoice() {
                             <p className="text-sm text-red-500">{fields.dueDate.errors}</p>
                         </div>
                     </div>
-                    <div>
-                        <div className="grid grid-cols-12 gap-4 mb-2 font-medium">
-                            <p className="col-span-6">Description</p>
-                            <p className="col-span-2">Quantity</p>
-                            <p className="col-span-2">Rate</p>
-                            <p className="col-span-2">Amount</p>
+                    <div className="space-y-2">
+                        {/* Header row for md and above */}
+                        <div className="hidden md:grid grid-cols-12 gap-4 font-medium">
+                            <Label className="col-span-6">Description</Label>
+                            <Label className="col-span-2">Quantity</Label>
+                            <Label className="col-span-2">Rate</Label>
+                            <Label className="col-span-2">Amount</Label>
                         </div>
-                        <div className="grid grid-cols-12 gap-4 mb-4">
-                            <div className="col-span-6">
+
+                        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-start">
+                            <div className="md:col-span-6">
+                                <Label className="md:hidden mb-1">Description</Label>
                                 <Textarea
                                     name={fields.invoiceItemDescription.name}
                                     key={fields.invoiceItemDescription.key}
@@ -204,44 +222,65 @@ export function CreateInvoice() {
                                 />
                                 <p className="text-sm text-red-500">{fields.invoiceItemDescription.errors}</p>
                             </div>
-                            <div className="col-span-2">
+
+                            <div className="md:col-span-2">
+                                <Label className="md:hidden mb-1">Quantity</Label>
                                 <Input
                                     name={fields.invoiceItemQuantity.name}
                                     key={fields.invoiceItemQuantity.key}
-                                    // defaultValue={fields.invoiceItemQuantity.initialValue}
-                                    type="number" placeholder="0"
+                                    type="number"
+                                    placeholder="0"
+                                    value={quantity}
+                                    onChange={(e) => setQuantity(e.target.value)}
+                                    className="w-full min-w-[72px] px-3"
                                 />
                                 <p className="text-sm text-red-500">{fields.invoiceItemQuantity.errors}</p>
-
-
                             </div>
-                            <div className="col-span-2">
+
+                            <div className="md:col-span-2">
+                                <Label className="md:hidden mb-1">Rate</Label>
                                 <Input
                                     name={fields.invoiceItemRate.name}
                                     key={fields.invoiceItemRate.key}
-                                    // defaultValue={fields.invoiceItemRate.initialValue}
-                                    type="number" placeholder="0"
+                                    type="number"
+                                    placeholder="0"
+                                    value={rate}
+                                    onChange={(e) => setRate(e.target.value)}
+                                    className="w-full min-w-[72px] px-3"
                                 />
-                                <p className="text-sm text-red-500">{fields.invoiceItemQuantity.errors}</p>
+                                <p className="text-sm text-red-500">{fields.invoiceItemRate.errors}</p>
                             </div>
-                            <div className="col-span-2">
+
+                            <div className="md:col-span-2">
+                                <Label className="md:hidden mb-1">Amount</Label>
                                 <Input
+                                    value={formatCurrency({
+                                        amount: calculateTotal,
+                                        currency: currency as any
+                                    })}
+                                    disabled
 
-                                    disabled type="number" placeholder="0"
+                                    className="w-full min-w-[72px] px-3"
                                 />
-
                             </div>
                         </div>
                     </div>
-                    <div className="flex justify-end">
+
+                    <div className="flex justify-end mt-4">
                         <div className="w-1/3">
                             <div className="flex justify-between py-2">
                                 <span>Subtotal</span>
-                                <span>$5.00</span>
+                                <span>{formatCurrency({
+                                    amount: calculateTotal,
+                                    currency: currency as any
+                                })}</span>
                             </div>
                             <div className="flex justify-between py-2 border-t ">
-                                <span>Total (USD)</span>
-                                <span className="font-medium underline underline-offset-2">$5.00</span>
+                                <span>Total {currency}</span>
+                                <span className="font-medium underline underline-offset-2">{formatCurrency({
+                                    amount: calculateTotal,
+                                    currency: currency as any
+                                })}</span>
                             </div>
                         </div>
                     </div>
