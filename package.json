@@ -24,6 +24,7 @@
     "date-fns": "^4.1.0",
     "framer-motion": "^12.16.0",
     "lucide-react": "^0.513.0",
+    "mailtrap": "^4.1.0",
     "next": "15.3.3",
     "next-auth": "5.0.0-beta.28",
     "nodemailer": "^7.0.3",

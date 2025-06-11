@@ -5,6 +5,7 @@ import { parseWithZod } from "@conform-to/zod";
 import { invoiceSchema, onboardingSchema } from "./utils/zodSchemas";
 import prisma from "./utils/db";
 import { redirect } from "next/navigation";
+import { emailClient } from "./utils/mailtrap";
 
 export async function onboardUser(prevState: any, formData: FormData) {
   const session = await requierUser();
@@ -60,6 +61,24 @@ export async function createInvoice(previousState: any, formData: FormData) {
       note: submission.value.note,
       userId: session.user?.id,
     },
+  });
+
+  const sender = {
+    email: "InvoicePro@riyang.co.in",
+    name: "InvoicePro",
+  };
+  const recipients = [
+    {
+      email: submission.value.clientEmail,
+    },
+  ];
+
+  emailClient.send({
+    from: sender,
+    to: [{ email: submission.value.clientEmail }],
+    subject: "New Invoice for you",
+    text: "Hey how are you. We have a new invoice for you!",
+    category: "Invoice",
   });
   return redirect("/dashboard/invoices");
 }
