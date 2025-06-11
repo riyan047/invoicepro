@@ -6,6 +6,7 @@ import { invoiceSchema, onboardingSchema } from "./utils/zodSchemas";
 import prisma from "./utils/db";
 import { redirect } from "next/navigation";
 import { emailClient } from "./utils/mailtrap";
+import { formatCurrency } from "./utils/formatCurrency";
 
 export async function onboardUser(prevState: any, formData: FormData) {
   const session = await requierUser();
@@ -75,10 +76,20 @@ export async function createInvoice(previousState: any, formData: FormData) {
 
   emailClient.send({
     from: sender,
-    to: [{ email: submission.value.clientEmail }],
-    subject: "New Invoice for you",
-    text: "Hey how are you. We have a new invoice for you!",
-    category: "Invoice",
+    to: recipients,
+    template_uuid: "c2abda23-0857-4488-8672-a1ca6aedd6cd",
+    template_variables: {
+      clientName: submission.value.clientName,
+      invoiceNumber: submission.value.invoiceNumber,
+      dueDate: new Intl.DateTimeFormat("en-US", {
+        dateStyle: "long",
+      }).format(new Date(submission.value.date)),
+      totalAmount: formatCurrency({
+        amount: submission.value.total,
+        currency: submission.value.currency as any,
+      }),
+      invoiceLink: "Test_Invoicelink",
+    },
   });
   return redirect("/dashboard/invoices");
 }
