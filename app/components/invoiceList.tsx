@@ -68,7 +68,7 @@ export async function InvoiceList() {
                         }
                         </TableCell>
                         <TableCell className="text-right">
-                            <InvoiceActions />
+                            <InvoiceActions id={invoice.id} />
                         </TableCell>
                     </TableRow>
                 ))}
