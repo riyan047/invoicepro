@@ -46,6 +46,14 @@ export async function GET(
     format: "a4",
   });
 
+  pdf.setProperties({
+    title: `Invoice - ${data.invoiceName}`,
+    subject: "Invoice Document",
+    author: data.fromName || "Invoice Pro",
+    keywords: "invoice, billing, PDF",
+  });
+  
+
   pdf.setFont("helvetica");
   // header
   pdf.setFontSize(24);
@@ -98,7 +106,35 @@ export async function GET(
     130,
     110
   );
-  pdf.text(data.total.toString(), 160, 110);
+  pdf.text(
+    formatCurrency({
+      amount: data.total,
+      currency: data.currency as any,
+    }),
+    160,
+    110
+  );
+
+  // Total section
+  pdf.line(20, 115, 190, 115);
+  pdf.setFont("helvetica", "bold");
+  pdf.text(`Total (${data.currency})`, 130, 130);
+  pdf.text(
+    formatCurrency({
+      amount: data.total,
+      currency: data.currency as any,
+    }),
+    160,
+    130
+  );
+
+  //additional note section
+  if (data.note) {
+    pdf.setFont("helvetica", "normal");
+    pdf.setFontSize(10);
+    pdf.text("Note:", 20, 150);
+    pdf.text(data.note, 20, 155);
+  }
 
   //generatign pdf as buffer.
 
@@ -108,7 +144,8 @@ export async function GET(
   return new NextResponse(pdfBuffer, {
     headers: {
       "Content-type": "application/pdf",
-      "Content-Disposition": "inline",
+      "Content-Disposition": `inline; filename="Invoice_${data.invoiceName}.pdf"`,
     },
   });
+  
 }
