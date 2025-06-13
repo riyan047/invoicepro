@@ -61,7 +61,9 @@ export async function InvoiceList() {
                                 currency: invoice.currency as any
                             })}
                         </TableCell>
-                        <TableCell><Badge>{invoice.status}</Badge></TableCell>
+                        <TableCell className="hidden md:block">
+                            <Badge>{invoice.status}</Badge>
+                        </TableCell>
                         <TableCell>{new Intl.DateTimeFormat("en-US", {
                             dateStyle: "medium"
                         }).format(invoice.createdAt)
