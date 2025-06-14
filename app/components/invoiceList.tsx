@@ -45,8 +45,8 @@ export async function InvoiceList() {
                     <TableHead>Invoice ID</TableHead>
                     <TableHead>Customer</TableHead>
                     <TableHead>Amount</TableHead>
-                    <TableHead className="hidden md:block">Status</TableHead>
-                    <TableHead>Date</TableHead>
+                    <TableHead >Status</TableHead>
+                    <TableHead className="hidden md:inline-block md:pt-2.5">Date</TableHead>
                     <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
             </TableHeader>
@@ -61,10 +61,10 @@ export async function InvoiceList() {
                                 currency: invoice.currency as any
                             })}
                         </TableCell>
-                        <TableCell className="hidden md:block">
+                        <TableCell >
                             <Badge>{invoice.status}</Badge>
                         </TableCell>
-                        <TableCell>{new Intl.DateTimeFormat("en-US", {
+                        <TableCell className="hidden md:block mt-1.5">{new Intl.DateTimeFormat("en-US", {
                             dateStyle: "medium"
                         }).format(invoice.createdAt)
                         }

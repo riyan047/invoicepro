@@ -71,7 +71,15 @@ export default async function DashboardLayout({ children }:
                             </SheetTrigger>
                             <SheetTitle />
                             <SheetContent side="left">
-                                <nav className="grid gap-2 mt-10">
+                                <Link
+                                    href="/"
+                                    className="flex items-center gap-2"
+                                >
+                                    <Image src={Logo} alt="Logo" className="size-7" />
+                                    <p className="text-2xl font-bold">Invoice<span className="text-blue-600">Pro</span>
+                                    </p>
+                                </Link>
+                                <nav className="grid gap-2 mt-4">
                                     <DashboardLinks />
                                 </nav>
                             </SheetContent>
