@@ -11,7 +11,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { signOut } from "../utils/auth";
 import prisma from "../utils/db";
 import { redirect } from "next/navigation";
-import { Toaster } from "@/components/ui/sonner";
+import LogoSvg from "@/public/logo";
 
 async function getUser(userId: string) {
     //if the user has not finished unboarding we redirect them to onboarding to complete it 1st
@@ -36,23 +36,23 @@ export default async function DashboardLayout({ children }:
     const session = await requierUser();
 
     const data = await getUser(session.user?.id as string);
+
+
     return (
         <>
             <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
                 <div className="hidden border-r bg-muted/40 md:block">
                     <div className="flex flex-col max-h-screen h-full gap-2">
                         <div className="h-14 flex items-center border-b px-4 lg:h-[60px] lg:px-6">
-                            <Link
-                                href="/"
-                                className="flex items-center gap-2"
-                            >
-                                <Image src={Logo} alt="Logo" className="size-7" />
-                                <p className="text-2xl font-bold">Invoice<span className="text-blue-600">Pro</span>
-                                </p>
+                            <Link href="/" className="flex items-center gap-2 ">
+                                <LogoSvg />
+                                <span className="text-2xl font-bold leading-none flex items-center">
+                                    Invoice<span className="text-blue-600">Pro</span>
+                                </span>
                             </Link>
                         </div>
                         <div className="flex-1">
-                            <nav className="grid items-start px-2 text-sm font-mediumlf:px-4">
+                            <nav className="grid items-start px-2 ml-3 text-sm font-mediumlf:px-4">
                                 <DashboardLinks />
                             </nav>
                         </div>
@@ -72,15 +72,7 @@ export default async function DashboardLayout({ children }:
                             </SheetTrigger>
                             <SheetTitle />
                             <SheetContent side="left">
-                                <Link
-                                    href="/"
-                                    className="flex items-center gap-2"
-                                >
-                                    <Image src={Logo} alt="Logo" className="size-7" />
-                                    <p className="text-2xl font-bold">Invoice<span className="text-blue-600">Pro</span>
-                                    </p>
-                                </Link>
-                                <nav className="grid gap-2 mt-4">
+                                <nav className="grid gap-2 mt-10">
                                     <DashboardLinks />
                                 </nav>
                             </SheetContent>
@@ -129,7 +121,6 @@ export default async function DashboardLayout({ children }:
                     </main>
                 </div>
             </div>
-            <Toaster richColors closeButton />
         </>
     );
 }
