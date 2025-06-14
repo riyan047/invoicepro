@@ -41,7 +41,7 @@ export async function POST(
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to send email reminder" },
-      { status: 404 }
+      { status: 500 }
     );
   }
 
