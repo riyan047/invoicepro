@@ -22,7 +22,7 @@ export function InvoiceActions({ id }: iAppProps) {
                 error: "Failed to send reminder email",
             }
         );
-      };
+    };
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -50,7 +50,7 @@ export function InvoiceActions({ id }: iAppProps) {
                     Reminder email
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                    <Link href="/">
+                    <Link href={`/dashboard/invoices/${id}/delete`}>
                         <Trash className="size-4 mr-2" />
                         Delete Invoice
                     </Link>

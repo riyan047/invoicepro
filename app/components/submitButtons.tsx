@@ -4,10 +4,19 @@ import { Loader2 } from "lucide-react";
 import { useFormStatus } from "react-dom";
 
 interface iAppProps {
-    text: string
+    text: string;
+    variant?:
+    "default"
+    | "destructive"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | "link"
+    | null
+    | undefined
 }
 
-const SubmitButton = ({ text }: iAppProps) => {
+const SubmitButton = ({ text, variant }: iAppProps) => {
     const { pending } = useFormStatus();
     return (
         <>
@@ -15,6 +24,7 @@ const SubmitButton = ({ text }: iAppProps) => {
                 pending ? (<Button
                     disabled
                     className="w-full"
+                    variant={variant}
                 >
                     <Loader2 className=" size-4
                     animate-spin" />
@@ -24,6 +34,7 @@ const SubmitButton = ({ text }: iAppProps) => {
                     (<Button
                         type="submit"
                         className="w-full"
+                        variant={variant}
                     >{text}</Button>)
             }
         </>
