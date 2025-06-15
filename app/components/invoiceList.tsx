@@ -62,7 +62,15 @@ export async function InvoiceList() {
                             })}
                         </TableCell>
                         <TableCell >
-                            <Badge>{invoice.status}</Badge>
+                            <Badge
+                                className={
+                                    invoice.status === "PAID"
+                                        ? "bg-emerald-600 "
+                                        : "bg-rose-600 "
+                                }
+                            >
+                                {invoice.status}
+                            </Badge>
                         </TableCell>
                         <TableCell className="hidden md:block mt-1.5">{new Intl.DateTimeFormat("en-US", {
                             dateStyle: "medium"
@@ -71,8 +79,8 @@ export async function InvoiceList() {
                         </TableCell>
                         <TableCell className="text-right">
                             <InvoiceActions id={invoice.id}
-                             status={invoice.status} 
-                             />
+                                status={invoice.status}
+                            />
                         </TableCell>
                     </TableRow>
                 ))}
