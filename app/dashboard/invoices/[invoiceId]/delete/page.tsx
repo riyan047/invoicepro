@@ -58,7 +58,7 @@ export default async function DeleteInvoice(
                         await deleteInvoice(invoiceId)
                     }} >
                         <SubmitButton text="Delete Invoice"
-                        variant="destructive"
+                            variant="destructive"
                         />
                     </form>
                 </CardFooter>
