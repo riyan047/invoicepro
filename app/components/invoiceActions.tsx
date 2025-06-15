@@ -14,16 +14,15 @@ export function InvoiceActions({ id }: iAppProps) {
         toast.promise(
             fetch(`/api/email/${id}`, {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application-json"
-                }
-            }), {
-            loading: "Sending reminder email...",
-            success: "Reminder email sent successfully",
-            error: "Failed to send reminder email"
-        }
-        )
-    }
+                headers: { "Content-Type": "application/json" },
+            }),
+            {
+                loading: "Sending reminder email...",
+                success: "Reminder email sent successfully",
+                error: "Failed to send reminder email",
+            }
+        );
+      };
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>

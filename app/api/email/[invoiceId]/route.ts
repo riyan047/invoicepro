@@ -4,13 +4,13 @@ import { emailClient } from "@/app/utils/mailtrap";
 import { NextResponse } from "next/server";
 
 export async function POST(
-  request: Request,
+  req: Request,
   { params }: { params: Promise<{ invoiceId: string }> }
 ) {
   try {
-    const session = await requierUser();
-
     const { invoiceId } = await params;
+
+    const session = await requierUser();
 
     const invoiceData = await prisma.invoice.findUnique({
       where: {
@@ -18,32 +18,33 @@ export async function POST(
         userId: session.user?.id,
       },
     });
+
     if (!invoiceData) {
-      return NextResponse.json({ error: "Invoice not found" }, { status: 404 });
+      return NextResponse.json({ error: "Invoice not found" }, 
+        { status: 404 }
+      );
     }
 
-    const sender = {
-      email: "InvoicePro@riyang.co.in",
-      name: "InvoicePro",
-    };
-    const recipients = [
-      {
-        email: invoiceData.clientEmail,
+    await emailClient.send({
+      from: {
+        email: "InvoicePro@riyang.co.in",
+        name: "InvoicePro",
       },
-    ];
-
-    emailClient.send({
-      from: sender,
-      to: recipients,
-      subject: "Reminder Invoice Payment",
-      text: "Hey you forgot to pay the invoice.",
+      to: [{ email: invoiceData.clientEmail }],
+      template_uuid: "e23ea763-e89d-4dda-aa4e-bf60911a306b",
+      template_variables: {
+        first_name: invoiceData.clientName,
+        company_info_country: "India",
+      },
     });
+
+    return NextResponse.json({ success: true });
+
   } catch (error) {
+ 
     return NextResponse.json(
       { error: "Failed to send email reminder" },
       { status: 500 }
     );
   }
-
-  return NextResponse.json({ success: "true" });
 }

@@ -12,6 +12,7 @@ import { signOut } from "../utils/auth";
 import prisma from "../utils/db";
 import { redirect } from "next/navigation";
 import LogoSvg from "@/public/logo";
+import { Toaster } from "@/components/ui/sonner";
 
 async function getUser(userId: string) {
     //if the user has not finished unboarding we redirect them to onboarding to complete it 1st
@@ -121,6 +122,7 @@ export default async function DashboardLayout({ children }:
                     </main>
                 </div>
             </div>
+            <Toaster richColors closeButton theme="light"/>
         </>
     );
 }
