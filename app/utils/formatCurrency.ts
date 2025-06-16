@@ -5,7 +5,12 @@ interface iAppProps {
 
 export function formatCurrency({ amount, currency }: iAppProps) {
   if (currency === "INR") {
-    return `INR ${amount.toFixed(2)}`; // ✅ Avoid ₹ symbol
+    return new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
+      maximumFractionDigits: 2,
+      minimumFractionDigits: 2,
+    }).format(amount);
   }
 
   return Intl.NumberFormat("en-US", {
@@ -13,4 +18,3 @@ export function formatCurrency({ amount, currency }: iAppProps) {
     currency: currency,
   }).format(amount);
 }
-

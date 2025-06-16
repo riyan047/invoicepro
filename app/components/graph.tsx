@@ -2,20 +2,7 @@
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { Line, LineChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 
-const data = [
-    {
-        date: "Nov 5",
-        amount: "10"
-    },
-    {
-        date: "Nov 6",
-        amount: "100"
-    },
-    {
-        date: "Nov 7",
-        amount: "500"
-    },
-]
+
 interface iAppProps {
     data: {
         date: string,
