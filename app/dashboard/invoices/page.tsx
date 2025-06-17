@@ -4,6 +4,7 @@ import { PlusIcon } from "lucide-react";
 import Link from "next/link";
 
 import { InvoiceList } from "@/app/components/invoiceList";
+import { Suspense } from "react";
 
 export default function InvoicesRoute() {
   return (
@@ -23,7 +24,9 @@ export default function InvoicesRoute() {
           </div>
         </CardHeader>
         <CardContent>
-          <InvoiceList />
+          <Suspense fallback={<p>Hello</p>}>
+            <InvoiceList />
+          </Suspense>
         </CardContent>
       </Card>
     </>
