@@ -30,7 +30,7 @@ async function getData(userId: string) {
     }),
   ]);
 
-  // Group totals by currency
+
   const revenueByCurrency: Record<string, number> = {};
   data.forEach((invoice) => {
     if (!revenueByCurrency[invoice.currency]) {
@@ -82,7 +82,6 @@ export default async function DashboardBlocks() {
               )
             )}
           </div>
-          {/* <hr className="my-2 border-muted" /> */}
           <p className="text-xs text-muted-foreground mt-1">
             Based on total volume
           </p>

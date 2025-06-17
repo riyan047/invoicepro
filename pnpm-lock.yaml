@@ -61,7 +61,7 @@ importers:
         version: 0.513.0(react@19.1.0)
       mailtrap:
         specifier: ^4.1.0
-        version: 4.1.0(nodemailer@7.0.3)
+        version: 4.1.0(@types/nodemailer@6.4.17)(nodemailer@7.0.3)
       next:
         specifier: 15.3.3
         version: 15.3.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -105,6 +105,9 @@ importers:
       '@types/node':
         specifier: ^20
         version: 20.17.57
+      '@types/nodemailer':
+        specifier: ^6.4.17
+        version: 6.4.17
       '@types/react':
         specifier: ^19
         version: 19.1.6
@@ -929,6 +932,9 @@ packages:
 
   '@types/node@20.17.57':
     resolution: {integrity: sha512-f3T4y6VU4fVQDKVqJV4Uppy8c1p/sVvS3peyqxyWnzkqXFJLRU7Y1Bl7rMS1Qe9z0v4M6McY0Fp9yBsgHJUsWQ==}
+
+  '@types/nodemailer@6.4.17':
+    resolution: {integrity: sha512-I9CCaIp6DTldEg7vyUTZi8+9Vo0hi1/T8gv3C89yk1rSAAzoKQ8H8ki/jBYJSFoH/BisgLP8tkZMlQ91CIquww==}
 
   '@types/raf@3.4.3':
     resolution: {integrity: sha512-c4YAvMedbPZ5tEyxzQdMoOhhJ4RD3rngZIdwC2/qDN3d7JpEhB6fiBRKVY1lg5B7Wk+uPBjn5f39j1/2MY1oOw==}
@@ -3561,6 +3567,10 @@ snapshots:
     dependencies:
       undici-types: 6.19.8
 
+  '@types/nodemailer@6.4.17':
+    dependencies:
+      '@types/node': 20.17.57
+
   '@types/raf@3.4.3':
     optional: true
 
@@ -4853,10 +4863,11 @@ snapshots:
     dependencies:
       react: 19.1.0
 
-  mailtrap@4.1.0(nodemailer@7.0.3):
+  mailtrap@4.1.0(@types/nodemailer@6.4.17)(nodemailer@7.0.3):
     dependencies:
       axios: 1.9.0
     optionalDependencies:
+      '@types/nodemailer': 6.4.17
       nodemailer: 7.0.3
     transitivePeerDependencies:
       - debug
