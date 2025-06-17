@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import { InvoiceList } from "@/app/components/invoiceList";
 import { Suspense } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function InvoicesRoute() {
   return (
@@ -24,7 +25,9 @@ export default function InvoicesRoute() {
           </div>
         </CardHeader>
         <CardContent>
-          <Suspense fallback={<p>Hello</p>}>
+          <Suspense fallback={
+            <Skeleton className="w-full h-[300px]" />
+          }>
             <InvoiceList />
           </Suspense>
         </CardContent>

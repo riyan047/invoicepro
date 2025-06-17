@@ -13,6 +13,7 @@ import { requierUser } from "../utils/hooks";
 import { formatCurrency } from "../utils/formatCurrency";
 import { Badge } from "@/components/ui/badge";
 import { EmptyState } from "./emptyState";
+import { resolve } from "path";
 
 async function getData(userId: string) {
     const data = await prisma.invoice.findMany({
