@@ -25,16 +25,12 @@ export default async function Dashboard() {
         <>
             {
                 data.length < 1 ? (
-                    <Suspense fallback={
-                        <Skeleton className="w-full h-full flex-1" />
-                    }>
-                        <EmptyState
-                            title="No Invoices found"
-                            description="Hey you haven't created any invoices. Please create one to enable analytics dashboard."
-                            buttonText="Create invoice"
-                            href="/dashboard/invoices/create"
-                        />
-                    </Suspense>
+                    <EmptyState
+                        title="No Invoices found"
+                        description="You haven&apos;t created any invoices yet. Create one to enable the analytics dashboard."
+                        buttonText="Create invoice"
+                        href="/dashboard/invoices/create"
+                    />
                 ) :
                     (
                         <Suspense fallback={

@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { requierUser } from "../utils/hooks";
 import Link from "next/link";
 import Logo from "@/public/logo.png"
+import NewLogo from "@/public/logo_from_svg.png"
 import Image from "next/image";
 import { DashboardLinks } from "../components/dashboardLinks";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -73,6 +74,12 @@ export default async function DashboardLayout({ children }:
                             </SheetTrigger>
                             <SheetTitle />
                             <SheetContent side="left">
+                                <div className="flex items-center gap-2 pt-6">
+                                    <Image src={NewLogo} alt="" className="size-10" />
+                                    <span className="text-2xl font-bold leading-none flex items-center">
+                                        Invoice<span className="text-blue-600">Pro</span>
+                                    </span>
+                                </div>
                                 <nav className="grid gap-2 mt-10">
                                     <DashboardLinks />
                                 </nav>
@@ -122,7 +129,7 @@ export default async function DashboardLayout({ children }:
                     </main>
                 </div>
             </div>
-            <Toaster richColors closeButton theme="light"/>
+            <Toaster richColors closeButton theme="light" />
         </>
     );
 }
