@@ -191,7 +191,7 @@ export function CreateInvoice({
                                         selected={selectedDate}
                                         onSelect={(date) => date && setSelectedDate(date)}
                                         mode="single"
-                                        disabled={(date) => date < new Date()}
+                                        disabled={(date) => date < new Date(new Date().setHours(0, 0, 0, 0))}
                                     />
                                 </PopoverContent>
                             </Popover>

@@ -49,7 +49,7 @@ export default async function DashboardLayout({ children }:
                             <Link href="/" className="flex items-center gap-2 ">
                                 <LogoSvg />
                                 <span className="text-2xl font-bold leading-none flex items-center">
-                                    Invoice<span className="text-blue-600">Pro</span>
+                                    Invoice<span className="bg-gradient-to-b from-indigo-600 to-purple-700 bg-clip-text text-transparent">Pro</span>
                                 </span>
                             </Link>
                         </div>
@@ -75,12 +75,14 @@ export default async function DashboardLayout({ children }:
                             <SheetTitle />
                             <SheetContent side="left">
                                 <div className="flex items-center gap-2 pt-6">
+                                    <Link href={"/"} className="flex">
                                     <Image src={NewLogo} alt="" className="size-10" />
                                     <span className="text-2xl font-bold leading-none flex items-center">
-                                        Invoice<span className="text-blue-600">Pro</span>
+                                            Invoice<span className="bg-gradient-to-b from-indigo-600 to-purple-700 bg-clip-text text-transparent">Pro</span>
                                     </span>
+                                    </Link>
                                 </div>
-                                <nav className="grid gap-2 mt-10">
+                                <nav className="grid gap-2 mt-6 md:mt-10">
                                     <DashboardLinks />
                                 </nav>
                             </SheetContent>
