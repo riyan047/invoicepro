@@ -1,6 +1,6 @@
 "use server";
 
-import { requierUser } from "./utils/hooks";
+import { requireUser } from "./utils/hooks";
 import { parseWithZod } from "@conform-to/zod";
 import { invoiceSchema, onboardingSchema } from "./utils/zodSchemas";
 import prisma from "./utils/db";
@@ -9,7 +9,7 @@ import { emailClient } from "./utils/mailtrap";
 import { formatCurrency } from "./utils/formatCurrency";
 
 export async function onboardUser(prevState: any, formData: FormData) {
-  const session = await requierUser();
+  const session = await requireUser();
   //input validation(server side validation)
   const submission = parseWithZod(formData, {
     schema: onboardingSchema,
@@ -34,7 +34,7 @@ export async function onboardUser(prevState: any, formData: FormData) {
 }
 
 export async function createInvoice(previousState: any, formData: FormData) {
-  const session = await requierUser();
+  const session = await requireUser();
 
   const submission = parseWithZod(formData, { schema: invoiceSchema });
   if (submission.status !== "success") {
@@ -98,7 +98,7 @@ export async function editInvoiceAction(
   previousState: any,
   formData: FormData
 ) {
-  const session = await requierUser();
+  const session = await requireUser();
 
   const submission = parseWithZod(formData, {
     schema: invoiceSchema,
@@ -165,7 +165,7 @@ export async function editInvoiceAction(
 }
 
 export async function deleteInvoice(invoiceId: string) {
-  const session = await requierUser();
+  const session = await requireUser();
 
   const data = await prisma.invoice.delete({
     where: {
@@ -176,7 +176,7 @@ export async function deleteInvoice(invoiceId: string) {
   return redirect("/dashboard/invoices");
 }
 export async function MarkAsPaidAction(invoiceId: string) {
-  const session = await requierUser();
+  const session = await requireUser();
 
   const data = await prisma.invoice.update({
     where: {

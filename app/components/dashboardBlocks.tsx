@@ -11,7 +11,7 @@ import {
   Users,
 } from "lucide-react";
 import prisma from "../utils/db";
-import { requierUser } from "../utils/hooks";
+import { requireUser } from "../utils/hooks";
 import { formatCurrency } from "../utils/formatCurrency";
 
 async function getData(userId: string) {
@@ -48,7 +48,7 @@ async function getData(userId: string) {
 }
 
 export default async function DashboardBlocks() {
-  const session = await requierUser();
+  const session = await requireUser();
   const {
     revenueByCurrency,
     totalInvoices,

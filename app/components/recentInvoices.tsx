@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import prisma from "../utils/db";
-import { requierUser } from "../utils/hooks";
+import { requireUser } from "../utils/hooks";
 import { formatCurrency } from "../utils/formatCurrency";
 
 async function getData(userId: string) {
@@ -25,7 +25,7 @@ async function getData(userId: string) {
 }
 
 export async function RecentInvoices() {
-    const session = await requierUser();
+    const session = await requireUser();
     const data = await getData(session.user?.id as string);
     return (
         <Card>

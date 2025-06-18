@@ -59,7 +59,7 @@ export function CreateInvoice({
                     noValidate
                 >
                     <input type="hidden" name={fields.date.name}
-                        value={selectedDate.toISOString()}
+                        value={selectedDate ? selectedDate.toISOString() : ""}
                     //this hidden input is for calender where we cant use defaults
                     />
 
@@ -189,9 +189,9 @@ export function CreateInvoice({
                                 <PopoverContent>
                                     <Calendar
                                         selected={selectedDate}
-                                        onSelect={(date) => setSelectedDate(date || new Date())}
+                                        onSelect={(date) => date && setSelectedDate(date)}
                                         mode="single"
-
+                                        disabled={(date) => date < new Date()}
                                     />
                                 </PopoverContent>
                             </Popover>

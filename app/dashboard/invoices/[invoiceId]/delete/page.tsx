@@ -1,5 +1,5 @@
 import prisma from "@/app/utils/db"
-import { requierUser } from "@/app/utils/hooks";
+import { requireUser } from "@/app/utils/hooks";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import { redirect } from "next/navigation"
@@ -30,7 +30,7 @@ type Params = Promise<{ invoiceId: string }>;
 export default async function DeleteInvoice(
     { params }: { params: Params }
 ) {
-    const session = await requierUser();
+    const session = await requireUser();
     const { invoiceId } = await params;
     await Authorize(invoiceId, session.user?.id as string);
 

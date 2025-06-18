@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Graph from "./graph";
 import prisma from "../utils/db";
-import { requierUser } from "../utils/hooks";
+import { requireUser } from "../utils/hooks";
 
 async function getInvoices(userId: string) {
     const rawData = await prisma.invoice.findMany({
@@ -55,9 +55,9 @@ async function getInvoices(userId: string) {
 }
 
 export default async function InvoiceGraph() {
-    const session = await requierUser();
+    const session = await requireUser();
     const data = await getInvoices(session.user?.id as string);
- 
+
     return (
         <Card className="lg:col-span-2">
             <CardHeader>
@@ -65,7 +65,7 @@ export default async function InvoiceGraph() {
                 <CardDescription>Invoices which have been paid in the last 30 days.</CardDescription>
             </CardHeader>
             <CardContent>
-                <Graph data={data}/>
+                <Graph data={data} />
             </CardContent>
         </Card>
     );

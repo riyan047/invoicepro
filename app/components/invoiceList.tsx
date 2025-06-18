@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/table"
 import { InvoiceActions } from "./invoiceActions";
 import prisma from "../utils/db";
-import { requierUser } from "../utils/hooks";
+import { requireUser } from "../utils/hooks";
 import { formatCurrency } from "../utils/formatCurrency";
 import { Badge } from "@/components/ui/badge";
 import { EmptyState } from "./emptyState";
@@ -38,7 +38,7 @@ async function getData(userId: string) {
 
 
 export async function InvoiceList() {
-    const session = await requierUser()
+    const session = await requireUser()
     const data = await getData(session.user?.id as string)
     return (
         <>
@@ -60,7 +60,7 @@ export async function InvoiceList() {
                                     <TableHead>Customer</TableHead>
                                     <TableHead>Amount</TableHead>
                                     <TableHead >Status</TableHead>
-                                    <TableHead className="hidden md:inline-block md:pt-2.5">Date</TableHead>
+                                    <TableHead className="hidden md:inline-block md:pt-2.5">Date(Created)</TableHead>
                                     <TableHead className="text-right">Actions</TableHead>
                                 </TableRow>
                             </TableHeader>

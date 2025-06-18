@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { requierUser } from "../utils/hooks";
+import { requireUser } from "../utils/hooks";
 import Link from "next/link";
 import Logo from "@/public/logo.png"
 import NewLogo from "@/public/logo_from_svg.png"
@@ -35,7 +35,7 @@ async function getUser(userId: string) {
 export default async function DashboardLayout({ children }:
     { children: ReactNode }
 ) {
-    const session = await requierUser();
+    const session = await requireUser();
 
     const data = await getUser(session.user?.id as string);
 

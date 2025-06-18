@@ -1,4 +1,4 @@
-import { requierUser } from "../utils/hooks";
+import { requireUser } from "../utils/hooks";
 import DashboardBlocks from "../components/dashboardBlocks";
 import InvoiceGraph from "../components/invoiceGraph";
 import { RecentInvoices } from "../components/recentInvoices";
@@ -19,7 +19,7 @@ async function getData(userId: string) {
 }
 
 export default async function Dashboard() {
-    const session = await requierUser();
+    const session = await requireUser();
     const data = await getData(session.user?.id as string);
     return (
         <>

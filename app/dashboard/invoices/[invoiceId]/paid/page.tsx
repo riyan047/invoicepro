@@ -15,7 +15,7 @@ import PaidGif from "@/public/paid-gif.gif"
 import { MarkAsPaidAction } from "@/app/actions";
 import prisma from "@/app/utils/db";
 import { redirect } from "next/navigation";
-import { requierUser } from "@/app/utils/hooks";
+import { requireUser } from "@/app/utils/hooks";
 
 async function Authorize(invoiceId: string, userId: string) {
     const data = await prisma.invoice.findUnique({
@@ -35,7 +35,7 @@ export default async function MarkAsPaid(
     }
 ) {
     const { invoiceId } = await params;
-    const session = await requierUser()
+    const session = await requireUser()
     await Authorize(invoiceId, session.user?.id as string)
     return (
         <div className="flex flex-1 justify-center items-center">
