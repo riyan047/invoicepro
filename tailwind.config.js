@@ -24,6 +24,18 @@ module.exports = {
       md: "768px",
       lg: "1200px",
     },
+    backgroundSize: {
+      '200': '200% 100%',
+    },
+    animation: {
+      'slide-bg': 'slide-bg 4s linear infinite',
+    },
+    keyframes: {
+      'slide-bg': {
+        '0%': { backgroundPosition: '0% 0%' },
+        '100%': { backgroundPosition: '200% 0%' },
+      },
+    },
     extend: {
       borderRadius: {
         lg: "var(--radius)",
