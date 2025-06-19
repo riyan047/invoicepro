@@ -2,7 +2,7 @@
 import { RainbowButton } from "@/components/magicui/rainbow-button";
 import Image from "next/image";
 import Link from "next/link";
-import DashboardImage from "@/public/dashboard.png";
+import DashboardImage from "@/public/dashboardImage.png";
 import { motion } from "framer-motion";
 
 export function Hero() {
@@ -55,7 +55,7 @@ export function Hero() {
             </div>
 
             <div className="relative w-full py-12 mx-auto mt-4 px-4 max-w-6xl">
-                {/* SVG BG only on medium and above */}
+               
                 <svg
                     className="absolute inset-0 -mt-24 blur-3xl hidden sm:block"
                     style={{ zIndex: -1 }}

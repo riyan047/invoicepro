@@ -13,17 +13,17 @@ const faqs = [
     {
         question: "Can I send invoices directly to my clients via email?",
         answer:
-            "Absolutely! With InvoicePro, you can send invoices directly to your clients’ email addresses in just a click — no need to download PDFs or switch apps.",
+            "Absolutely! With InvoicePro, you can send invoices directly to your clients email addresses in just a click — no need to download PDFs or switch apps.",
     },
     {
-        question: "Does InvoicePro support automatic payment reminders?",
+        question: "Can I manually send payment reminders to clients?",
         answer:
-            "Yes! InvoicePro automatically sends polite email reminders to clients for pending or overdue invoices — helping you get paid faster without the awkward follow-ups.",
+            "Yes! InvoicePro allows you to send payment reminders to clients with just a click. It's an easy way to follow up on unpaid invoices without switching tools.",
     },
     {
         question: "Is there a limit on how many invoices I can create?",
         answer:
-            "No limits on creativity or billing! InvoicePro allows you to create as many invoices as you need. Unlimited access is available with our premium plan.",
+            "No limits on creativity or billing! InvoicePro allows you to create as many invoices as you need. Unlimited access is available.",
     },
     {
         question: "Is InvoicePro secure and private?",
