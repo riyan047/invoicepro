@@ -12,6 +12,7 @@
     "@auth/prisma-adapter": "^2.9.1",
     "@conform-to/react": "^1.6.1",
     "@conform-to/zod": "^1.6.1",
+    "@dotlottie/react-player": "^1.6.19",
     "@prisma/client": "^6.9.0",
     "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-dialog": "^1.1.14",
