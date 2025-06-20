@@ -22,8 +22,7 @@ import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
 import { invoiceSchema } from "../utils/zodSchemas";
 import { formatCurrency } from "../utils/formatCurrency";
-import { Prisma } from "@/lib/generated/prisma";
-
+import { Prisma } from "@prisma/client";
 
 interface iAppProps {
     data: Prisma.InvoiceGetPayload<{}>
