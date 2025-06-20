@@ -2,10 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import Logo from "@/public/logo_from_svg.png";
 import { buttonVariants } from "@/components/ui/button";
-import { requireUser } from "../utils/hooks";
+import { auth } from "../utils/auth";
 
 export async function Navbar() {
-    const session = await requireUser();
+    const session = await auth();
     return (
         <header className="w-full">
             <div className=" flex justify-between items-center py-5">

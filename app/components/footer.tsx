@@ -7,7 +7,7 @@ import Image from "next/image";
 const footerLinks = [
     { href: "#", label: "Contact" },
     { href: "#", label: "Privacy Policy" },
-    { href: "#", label: "Terms & Conditions" },
+    { href: "https://youtu.be/S_ITTMEuujs?si=-tXMGO6YXvyDuL2H", label: "Demo video" },
 ];
 
 export default function Footer() {
@@ -23,10 +23,14 @@ export default function Footer() {
                         </span>
                     </span>
                 </div>
-                <div className="flex justify-between gap-12 flex-col md:flex-row items-center">
+                <div className="flex justify-between gap-6 flex-col md:flex-row items-center">
                     <nav className="flex gap-6">
                         {footerLinks.map(footerLink => (
-                            <a key={footerLink.label} href={footerLink.href} className=" text-black/50 text-sm">{footerLink.label}</a>
+                            <a
+                                key={footerLink.label}
+                                href={footerLink.href}
+                                className=" text-black/50 text-sm"
+                            >{footerLink.label}</a>
                         ))}
                     </nav>
                     <div className="flex gap-6">
