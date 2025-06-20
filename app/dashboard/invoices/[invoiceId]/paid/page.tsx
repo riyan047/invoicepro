@@ -28,7 +28,6 @@ async function Authorize(invoiceId: string, userId: string) {
         return redirect("/dashboard/invoices")
     }
 }
-
 export default async function MarkAsPaid(
     { params }: {
         params: Promise<{ invoiceId: string }>
