@@ -17,6 +17,9 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Invoice Pro",
   description: "Create and keep track of your invoice's effortlessly",
+  icons:{
+    icon:"/favicon.ico"
+  }
 };
 
 export default function RootLayout({

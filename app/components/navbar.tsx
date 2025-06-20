@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import HeroImage from "@/public/dashboard.png";
 import Logo from "@/public/logo_from_svg.png";
 import { buttonVariants } from "@/components/ui/button";
+import { requireUser } from "../utils/hooks";
 
-export function Navbar() {
+export async function Navbar() {
+    const session = await requireUser();
     return (
         <header className="w-full">
             <div className=" flex justify-between items-center py-5">
@@ -26,7 +27,7 @@ export function Navbar() {
                     href="/login"
                     className={buttonVariants({ variant: "default" })}
                 >
-                    Get Started
+                    {session ? "Dashboard" : "Get Started"}
                 </Link>
             </div>
         </header>
