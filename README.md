@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💼 InvoicePro
 
-## Getting Started
+**InvoicePro** is a sleek, modern invoicing platform built for freelancers, entrepreneurs, and small businesses.
 
-First, run the development server:
+With InvoicePro, users can:
+- 🧾 **Create** and manage professional invoices  
+- 📩 **Send** invoices via email to clients using Tailtrap (via Nodemailer)  
+- 📊 **Track** all invoices with payment statuses  
+- 🔔 **Send follow-up reminders** manually via email  
+
+🌐 [Live App](https://invoicepro.riyang.co.in/)
+
+---
+
+## 🚀 Features
+
+- ✅ Easy invoice creation with line items and notes  
+- ✉️ Email delivery of invoices via Nodemailer + Tailtrap  
+- 📁 Organize and filter invoices by status (paid, unpaid)  
+- 🔍 Track all sent invoices from your dashboard  
+- 🔔 Manually send follow-up emails as payment reminders  
+- 👥 Manage customer contacts  
+- 📄 PDF invoice download to customers  
+
+---
+
+## 🖥️ Tech Stack
+
+- **Frontend**: Next.js (App Router), Tailwind CSS  
+- **Backend**: Next.js API routes, Prisma  
+- **Database**: PostgreSQL  
+- **Auth**: [NextAuth.js](https://next-auth.js.org/)  
+- **Email Service**: Nodemailer + Tailtrap SMTP  
+
+---
+
+## ⚙️ Getting Started
+
+### 1. Clone the Repository
 
 ```bash
+git clone https://github.com/your-username/invoicepro.git
+cd invoicepro
+
+## 2. Install Dependencies
+bash
+Copy code
+npm install
+# or
+yarn
+
+## 3. Configure Environment Variables
+Create a .env.local file in the root directory and add the following:
+
+env
+Copy code
+AUTH_SECRET=your_nextauth_secret
+
+EMAIL_SERVER_USER=your_tailtrap_username
+EMAIL_SERVER_PASSWORD=your_tailtrap_password
+EMAIL_SERVER_HOST=smtp.mailtrap.io
+EMAIL_SERVER_PORT=587
+EMAIL_FROM=no-reply@invoicepro.riyang.co.in
+
+DATABASE_URL=your_postgres_database_url
+MAILTRAP_TOKEN=your_mailtrap_token
+
+
+## 4. Run the Development Server
+bash
+Copy code
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
